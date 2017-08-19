@@ -40,7 +40,6 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
 def NOTIFIED_ADD_CONTACT(op):
     try:
         sendMessage(op.param1, client.getContact(op.param1).displayName + "Thanks for add")
-        #sendMessage(op.param1, text=None, contentMetadata={'mid': "u64523638ad2580f81b536eeca79f1640"}, contentType=13)
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
