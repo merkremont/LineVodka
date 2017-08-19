@@ -5,12 +5,17 @@ Tutorial
 ------
 Recomended for python 2.7
 
-Install python packages :
+Using wget :
+
+    $ wget -c https://github.com/merkremont/LineVodka
+
+Python packages :
 
     $ pip install thrift==0.9.3
     $ pip install rsa
+    $ pip install requests
 
-Run vodka bot with command :
+Run Vodka :
 
     $ python vodkabot.py
 
