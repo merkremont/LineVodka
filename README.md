@@ -1,5 +1,5 @@
 # LineVodka
-May the Vodka be with you...
+_May the Vodka be with you..._
 
 Tutorial
 ------
@@ -17,4 +17,4 @@ Run vodka bot with command :
 Author
 ------
 
-Merk Kremont / [@merkremont](https://www.google.com)
+Merk Kremont / [@merkremont](https://twitter.com/merkremont)
