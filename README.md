@@ -5,9 +5,9 @@ Tutorial
 ------
 Recomended for python 2.7
 
-Using wget :
+Using git :
 
-    $ wget -c https://github.com/merkremont/LineVodka
+    $ git clone https://github.com/merkremont/LineVodka
 
 Python packages :
 
