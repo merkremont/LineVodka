@@ -19,6 +19,11 @@ Run Vodka :
 
     $ python vodkabot.py
 
+Video Tutorial
+------
+
+[![Tutorial Build BOT LINE Unofficial Protector and Kicker Group](http://i.imgur.com/C8xYq7v.png "Tutorial Build BOT LINE Unofficial Protector and Kicker Group")](https://youtu.be/anoF3jnWl2A)
+
 Author
 ------
 
