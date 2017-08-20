@@ -7,7 +7,7 @@ Recomended for python 2.7
 
 Using git :
 
-    $ git clone https://github.com/merkremont/LineVodka
+    $ git clone http://github.com/merkremont/LineVodka
 
 Python packages :
 
