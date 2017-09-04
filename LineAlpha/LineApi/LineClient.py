@@ -37,7 +37,55 @@ class LineClient(LineApi):
         else:
             print "must login!\n"
 
+    """Image"""
 
+    @loggedIn
+    def post_content(self, urls, data=None, files=None):
+        return self._session.post(urls, headers=self._headers, data=data, files=files)
+
+    @loggedIn
+    def sendImage(self, to_, path):
+        M = Message(to=to_, text=None, contentType = 1)
+        M.contentMetadata = None
+        M.contentPreview = None
+        print M
+        M2 = self._client.sendMessage(0,M)
+        print M2
+        M_id = M2.id
+        files = {
+            'file': open(path, 'rb'),
+        }
+        params = {
+            'name': 'media',
+            'oid': M_id,
+            'size': len(open(path, 'rb').read()),
+            'type': 'image',
+            'ver': '1.0',
+        }
+        data = {
+            'params': json.dumps(params)
+        }
+        r = self.post_content('https://obs-sg.line-apps.com/talk/m/upload.nhn', data=data, files=files)
+        print r
+        if r.status_code != 201:
+            raise Exception('Upload image failure.')
+        return True
+
+    @loggedIn
+    def sendImageWithURL(self, to_, url):
+        path = '%s/pythonLine-%i.data' % (tempfile.gettempdir(), randint(0, 9))
+
+        r = requests.get(url, stream=True)
+        if r.status_code == 200:
+            with open(path, 'w') as f:
+                shutil.copyfileobj(r.raw, f)
+        else:
+            raise Exception('Download image failure.')
+
+        try:
+            self.sendImage(to_, path)
+        except Exception as e:
+            raise e
     """User"""
 
     @loggedIn
