@@ -40,20 +40,18 @@ class LineClient(LineApi):
         else:
             print "must login!\n"
 
-    """Image"""
-
     @loggedIn
     def post_content(self, urls, data=None, files=None):
         return self._session.post(urls, headers=self._headers, data=data, files=files)
+
+    """Image"""
 
     @loggedIn
     def sendImage(self, to_, path):
         M = Message(to=to_, text=None, contentType = 1)
         M.contentMetadata = None
         M.contentPreview = None
-        print M
         M2 = self._client.sendMessage(0,M)
-        print M2
         M_id = M2.id
         files = {
             'file': open(path, 'rb'),
@@ -69,7 +67,6 @@ class LineClient(LineApi):
             'params': json.dumps(params)
         }
         r = self.post_content('https://obs-sg.line-apps.com/talk/m/upload.nhn', data=data, files=files)
-        print r
         if r.status_code != 201:
             raise Exception('Upload image failure.')
         return True
@@ -77,14 +74,12 @@ class LineClient(LineApi):
     @loggedIn
     def sendImageWithURL(self, to_, url):
         path = '%s/pythonLine-%i.data' % (tempfile.gettempdir(), randint(0, 9))
-
         r = requests.get(url, stream=True)
         if r.status_code == 200:
             with open(path, 'w') as f:
                 shutil.copyfileobj(r.raw, f)
         else:
             raise Exception('Download image failure.')
-
         try:
             self.sendImage(to_, path)
         except Exception as e:
@@ -111,7 +106,6 @@ class LineClient(LineApi):
     def updateSettings(self, settingObject):
         return self._client.updateSettings(0, settingObject)
 
-
     """Operation"""
 
     @loggedIn
@@ -121,7 +115,6 @@ class LineClient(LineApi):
     @loggedIn
     def getLastOpRevision(self):
         return self._client.getLastOpRevision()
-
 
     """Message"""
 
@@ -268,7 +261,6 @@ class LineClient(LineApi):
     @loggedIn
     def leaveRoom(self, roomId):
         return self._client.leaveRoom(0, roomId)
-
 
     """unknown function"""
 
