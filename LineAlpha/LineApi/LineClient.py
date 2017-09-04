@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from .LineApi import LineApi
+from .LineServer import url
 from .LineCallback import LineCallback
 from ..LineThrift.ttypes import Message
-import json
-import requests
+import json, requests, tempfile, shutil
+import unicodedata
+from random import randint
 
 try:
     from thrift.protocol import fastbinary
@@ -22,8 +24,9 @@ class LineClient(LineApi):
 
     def __init__(self):
         LineApi.__init__(self)
+        self._messageReq = {}
         self._session = requests.session()
-    _headers = {}
+        self._headers = url.Headers
 
     @loggedIn
     def _loginresult(self):
