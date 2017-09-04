@@ -29,6 +29,9 @@ class LineApi(object):
     def __init__(self):
         self._transportOpen(url.LINE_HOST_DOMAIN)
         self.callback = LineCallback(self.defaultCall)
+        self.urls=url()
+        self.urls.set_Headers('User-Agent', url.UserAgent)
+        self.urls.set_Headers('X-Line-Application', url.AppName)
 
     def onLogin(self):
         self.revision = self._client.getLastOpRevision()
@@ -39,49 +42,35 @@ class LineApi(object):
             self._thriftTransport = LineTransport(host + path)
         else:
             self._thriftTransport = LineTransport(host)
-
         self._thriftProtocol = TCompactProtocol.TCompactProtocol(
             self._thriftTransport)
-
         self._client = TalkService.Client(self._thriftProtocol)
 
     def _login(self, email, passwordd, certificate=None, loginName=url.systemname):
         self._thriftTransport.targetPath(url.LINE_AUTH_QUERY_PATH)
-
         session_json = url.get_json(url.parseUrl(url.LINE_SESSION_LINE_QUERY_PATH))
-
         self.certificate = certificate
-
         session_key = session_json['session_key']
         message = (chr(len(session_key)) + session_key +
                    chr(len(email)) + email +
                    chr(len(passwordd)) + passwordd).encode('utf-8')
-
         keyname, n, e = session_json['rsa_key'].split(",")
         pub_key = rsa.PublicKey(int(n, 16), int(e, 16))
         crypto = rsa.encrypt(message, pub_key).encode('hex')
-
         self._thriftTransport.targetPath(url.LINE_AUTH_QUERY_PATH)
-
         result = self._client.loginWithIdentityCredentialForCertificate(
             IdentityProvider.LINE, keyname, crypto, True, '127.0.0.1', loginName, certificate)
 
         if result.type == 3:
-            # required pin verification
             url._pincode = result.pinCode
-
             self.callback.Pinverified(url._pincode)
-
-            url.set_Headers('X-Line-Access', result.verifier)
             getAccessKey = url.get_json(
                 url.parseUrl(url.LINE_CERTIFICATE_PATH), allowHeader=True)
-
             self.verifier = getAccessKey['result']['verifier']
-
             result = self._client.loginWithVerifierForCerificate(self.verifier)
-
             self.certificate = result.certificate
             self.authToken = result.authToken
+            self.urls.set_Headers('X-Line-Access', result.authToken)
 
             self._thriftTransport.setAccesskey(self.authToken)
             self.onLogin()
@@ -92,14 +81,14 @@ class LineApi(object):
 
         elif result.type == 1:
             self.authToken = result.authToken
-
+            self.urls.set_Headers('X-Line-Access', result.authToken)
             self._thriftTransport.setAccesskey(self.authToken)
             self.onLogin()
             self._thriftTransport.targetPath(url.LINE_API_QUERY_PATH_FIR)
 
     def _tokenLogin(self, authToken):
         self._thriftTransport.targetPath(url.LINE_AUTH_QUERY_PATH)
-
+        self.urls.set_Headers('X-Line-Access', authToken)
         self._thriftTransport.setAccesskey(authToken)
         self.authToken = authToken
         self.onLogin()
@@ -108,20 +97,17 @@ class LineApi(object):
     def _qrLogin(self, keepLoggedIn=True, systemName=url.systemname):
         self._thriftTransport.targetPath(url.LINE_AUTH_QUERY_PATH)
         qr = self._client.getAuthQrcode(keepLoggedIn, systemName)
-
         self.callback.QrUrl("line://au/q/" + qr.verifier)
-
         url.set_Headers('X-Line-Application', url.AppName)
         url.set_Headers('X-Line-Access', qr.verifier)
-
         verified = url.get_json(
             url.parseUrl(url.LINE_CERTIFICATE_PATH), allowHeader=True)
         vr = verified['result']['verifier']
         lr = self._client.loginWithVerifierForCertificate(vr)
         self._thriftTransport.setAccesskey(lr.authToken)
         self.authToken = lr.authToken
+        print self.authToken
         self.onLogin()
-
         self._thriftTransport.targetPath(url.LINE_API_QUERY_PATH_FIR)
 
     def setCallback(self, callback):
@@ -135,5 +121,4 @@ class LineApi(object):
 
     def _logout(self):
         self._client.logoutSession(self.authToken)
-
         self._thriftTransport.setAccesskey("")
