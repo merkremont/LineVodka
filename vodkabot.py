@@ -147,23 +147,6 @@ def SEND_MESSAGE(op):
                     if group.invitee is None: md += "\n成員人數: " + str(len(group.members)) + "人\n\n招待中: 0人"
                     else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]"
                     sendMessage(msg.to,md)
-		  elif wait["contact"] == True:
-                    msg.contentType = 0
-                    cl.sendText(msg.to,msg.contentMetadata["mid"])
-                    if 'displayName' in msg.contentMetadata:
-                        contact = cl.getContact(msg.contentMetadata["mid"])
-                        try:
-                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
-                        except:
-                            cu = ""
-                        cl.sendText(msg.to,"[displayName]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[statusMessage]:\n" + contact.statusMessage + "\n[pictureStatus]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[coverURL]:\n" + str(cu))
-                    else:
-                        contact = cl.getContact(msg.contentMetadata["mid"])
-                        try:
-                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
-                        except:
-                            cu = ""
-                        cl.sendText(msg.to,"[displayName]:\n" + contact.displayName + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[statusMessage]:\n" + contact.statusMessage + "\n[pictureStatus]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[coverURL]:\n" + str(cu))
                 if "gname:" in msg.text:
                     key = msg.text[22:]
                     group = client.getGroup(msg.to)
