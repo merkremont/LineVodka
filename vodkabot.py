@@ -141,7 +141,7 @@ def SEND_MESSAGE(op):
                     sendMessage(msg.to, msg.to)
                 if msg.text == "ginfo":
                     group = client.getGroup(msg.to)
-                    md = "戰神抓群組資料\n[群組名稱]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[群組照片]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
+                    md = "戰神抓群組資料\n" + "[群組名稱]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[群組照片]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
                     if group.preventJoinByTicket is False: md += "\n\n群組URL: 開啟中\n"
                     else: md += "\n\n群組URL: 關閉中\n"
                     if group.invitee is None: md += "\n成員人數: " + str(len(group.members)) + "人\n\n招待中: 0人"
