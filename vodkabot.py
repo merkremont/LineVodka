@@ -60,7 +60,7 @@ tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
 
 def NOTIFIED_KICKOUT_FROM_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param3).displayName + " 被踢了呢><!\n" + "【戰神】[" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+        sendMessage(op.param1, client.getContact(op.param3).displayName + " 被踢了呢><!\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_KICKOUT_FROM_GROUP\n\n")
@@ -70,7 +70,7 @@ tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
 
 def NOTIFIED_LEAVE_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + " 已退出群組(╥﹏╥)\n" + "【戰神】[" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+        sendMessage(op.param1, client.getContact(op.param2).displayName + " 已退出群組(╥﹏╥)\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
@@ -175,7 +175,7 @@ def SEND_MESSAGE(op):
                     key = msg.text[5:]
                     client.kickoutFromGroup(msg.to, [key])
                     contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+"戰神跟你說聲抱歉囉><\n" + "[" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                    sendMessage(msg.to, ""+contact.displayName+"掰掰囉(づ￣ ³￣)づ\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                 if "Nk:" in msg.text:
                     key = msg.text[3:]
                     group = client.getGroup(msg.to)
@@ -183,7 +183,7 @@ def SEND_MESSAGE(op):
                     Mids = [contact.mid for contact in group.members]
                     if key in Names:
                         kazu = Names.index(key)
-                        sendMessage(msg.to, "戰神跟你說掰掰拉^^\n" + "[" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                        sendMessage(msg.to,contact.displayName + "掰掰拉^^\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                         client.kickoutFromGroup(msg.to, [""+Mids[kazu]+""])
                         contact = client.getContact(Mids[kazu])
                         sendMessage(msg.to, ""+contact.displayName+" 抱歉囉><")
@@ -196,7 +196,7 @@ def SEND_MESSAGE(op):
                     else:
                         gInviMids = [contact.mid for contact in group.invitee]
                         client.cancelGroupInvitation(msg.to, gInviMids)
-                        sendMessage(msg.to, str(len(group.invitee)) + " 人 已被戰神取消(´∀｀)♡\n" + "[" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                        sendMessage(msg.to, str(len(group.invitee)) + " 人 已被戰神取消(´∀｀)♡\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                 if "invite:" in msg.text:
                     key = msg.text[-33:]
                     client.findAndAddContactsByMid(key)
@@ -219,7 +219,7 @@ def SEND_MESSAGE(op):
                 if msg.text == "gift":
                     sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
                 if msg.text == "set":
-                    sendMessage(msg.to, "已抓已讀點♪\n" + "[" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                    sendMessage(msg.to, "已抓已讀點♪\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                     try:
                         del wait['readPoint'][msg.to]
                         del wait['readMember'][msg.to]
