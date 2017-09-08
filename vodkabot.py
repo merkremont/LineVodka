@@ -48,7 +48,7 @@ def NOTIFIED_ADD_CONTACT(op):
 tracer.addOpInterrupt(5,NOTIFIED_ADD_CONTACT)
 
 def NOTIFIED_ACCEPT_GROUP_INVITATION(op):
-    #print op
+    
     try:
         sendMessage(op.param1, client.getContact(op.param2).displayName + "歡迎來到 " + group.name)
     except Exception as e:
@@ -60,7 +60,7 @@ tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
 
 def NOTIFIED_KICKOUT_FROM_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param3).displayName + " 被踢了呢><!\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+        sendMessage(op.param1, client.getContact(op.param3).displayName + " 被踢了呢><!\n" + "[戰神" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_KICKOUT_FROM_GROUP\n\n")
@@ -70,7 +70,7 @@ tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
 
 def NOTIFIED_LEAVE_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + " 已退出群組\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+        sendMessage(op.param1, client.getContact(op.param2).displayName + " 已退出群組\n" + "[戰神" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
@@ -145,8 +145,25 @@ def SEND_MESSAGE(op):
                     if group.preventJoinByTicket is False: md += "\n\n群組URL: 開啟中\n"
                     else: md += "\n\n群組URL: 關閉中\n"
                     if group.invitee is None: md += "\n成員人數: " + str(len(group.members)) + "人\n\n招待中: 0人"
-                    else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n"
-                    sendMessage(msg.to,md) + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]"
+                    else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]"
+                    sendMessage(msg.to,md)
+		  elif wait["contact"] == True:
+                    msg.contentType = 0
+                    cl.sendText(msg.to,msg.contentMetadata["mid"])
+                    if 'displayName' in msg.contentMetadata:
+                        contact = cl.getContact(msg.contentMetadata["mid"])
+                        try:
+                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
+                        except:
+                            cu = ""
+                        cl.sendText(msg.to,"[displayName]:\n" + msg.contentMetadata["displayName"] + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[statusMessage]:\n" + contact.statusMessage + "\n[pictureStatus]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[coverURL]:\n" + str(cu))
+                    else:
+                        contact = cl.getContact(msg.contentMetadata["mid"])
+                        try:
+                            cu = cl.channel.getCover(msg.contentMetadata["mid"])
+                        except:
+                            cu = ""
+                        cl.sendText(msg.to,"[displayName]:\n" + contact.displayName + "\n[mid]:\n" + msg.contentMetadata["mid"] + "\n[statusMessage]:\n" + contact.statusMessage + "\n[pictureStatus]:\nhttp://dl.profile.line-cdn.net/" + contact.pictureStatus + "\n[coverURL]:\n" + str(cu))
                 if "gname:" in msg.text:
                     key = msg.text[22:]
                     group = client.getGroup(msg.to)
@@ -175,7 +192,7 @@ def SEND_MESSAGE(op):
                     key = msg.text[5:]
                     client.kickoutFromGroup(msg.to, [key])
                     contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+"掰掰囉(づ￣ ³￣)づ\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                    sendMessage(msg.to, ""+contact.displayName+"掰掰囉(づ￣ ³￣)づ\n" + "[戰神" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                 if "Nk:" in msg.text:
                     key = msg.text[3:]
                     group = client.getGroup(msg.to)
@@ -184,12 +201,12 @@ def SEND_MESSAGE(op):
                     if key in Names:
                         kazu = Names.index(key)
 			contact = client.getContact(Mids[kazu])
-                        sendMessage(msg.to,contact.displayName + "掰掰拉^^\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                        sendMessage(msg.to,contact.displayName + "掰掰拉^^\n" + "[戰神" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                         client.kickoutFromGroup(msg.to, [""+Mids[kazu]+""])
                         contact = client.getContact(Mids[kazu])
                         sendMessage(msg.to, ""+contact.displayName+" 抱歉囉><")
                     else:
-                        sendMessage(msg.to, "戰神找不到這位成員><")
+                        sendMessage(msg.to, "找不到這位成員><")
                 if msg.text == "cancel":
                     group = client.getGroup(msg.to)
                     if group.invitee is None:
@@ -197,7 +214,7 @@ def SEND_MESSAGE(op):
                     else:
                         gInviMids = [contact.mid for contact in group.invitee]
                         client.cancelGroupInvitation(msg.to, gInviMids)
-                        sendMessage(msg.to, str(len(group.invitee)) + " 人 已被戰神取消(´∀｀)♡\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                        sendMessage(msg.to, str(len(group.invitee)) + " 人 已被戰神取消(´∀｀)♡\n" + "[戰神" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                 if "invite:" in msg.text:
                     key = msg.text[-33:]
                     client.findAndAddContactsByMid(key)
@@ -210,6 +227,7 @@ def SEND_MESSAGE(op):
                     M.contentType = 13
                     M.contentMetadata = {'mid': msg.from_}
                     client.sendMessage(M)
+		    
                 if "show:" in msg.text:
                     key = msg.text[-33:]
                     sendMessage(msg.to, text=None, contentMetadata={'mid': key}, contentType=13)
@@ -220,7 +238,7 @@ def SEND_MESSAGE(op):
                 if msg.text == "gift":
                     sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
                 if msg.text == "set":
-                    sendMessage(msg.to, "已抓已讀點♪\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                    sendMessage(msg.to, "已抓已讀點♪\n" + "[戰神" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                     try:
                         del wait['readPoint'][msg.to]
                         del wait['readMember'][msg.to]
