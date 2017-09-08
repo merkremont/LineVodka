@@ -219,7 +219,7 @@ def SEND_MESSAGE(op):
                 if msg.text == "gift":
                     sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
                 if msg.text == "set":
-                    sendMessage(msg.to, "已抓已讀點♪/n" + "[" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                    sendMessage(msg.to, "已抓已讀點♪\n" + "[" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                     try:
                         del wait['readPoint'][msg.to]
                         del wait['readMember'][msg.to]
