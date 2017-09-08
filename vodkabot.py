@@ -53,7 +53,7 @@ def NOTIFIED_ACCEPT_GROUP_INVITATION(op):
         sendMessage(op.param1, client.getContact(op.param2).displayName + "歡迎來到 " + group.name)
     except Exception as e:
         print e
-        print ("\n\nNOTIFIED_ACCEPT_GROUP_INVITATION\n\n")
+        print ("\n\nNOTIFIED_ACCEPT_GROUP_INVITATION\n\n
         return
 
 tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
@@ -70,7 +70,7 @@ tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
 
 def NOTIFIED_LEAVE_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + " 已退出群組(╥﹏╥)\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+        sendMessage(op.param1, client.getContact(op.param2).displayName + " 已退出群組\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
