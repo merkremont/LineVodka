@@ -183,6 +183,7 @@ def SEND_MESSAGE(op):
                     Mids = [contact.mid for contact in group.members]
                     if key in Names:
                         kazu = Names.index(key)
+			contact = client.getContact(Mids[kazu])
                         sendMessage(msg.to,contact.displayName + "掰掰拉^^\n" + "[戰神][" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                         client.kickoutFromGroup(msg.to, [""+Mids[kazu]+""])
                         contact = client.getContact(Mids[kazu])
