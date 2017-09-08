@@ -148,7 +148,7 @@ def SEND_MESSAGE(op):
                     else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中人數: " + str(len(group.invitee)) + "人"
                     sendMessage(msg.to,md)
 		if msg.text == "help":
-                    sendMessage(msg.to,"ㄌㄑandㄎㄩ 專屬help\n[Mid] 查看自己的mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[kick:] 利用mid踢人\n" + 
+                    sendMessage(msg.to,"ㄌㄑandㄎㄩ 專屬help\n\n[mid] 查看自己的mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[kick:] 利用mid踢人\n" + 
 				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[invite:] 利用mid邀請\n[show:] 顯示mid得友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n\n[" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                 if "gname:" in msg.text:
                     key = msg.text[22:]
@@ -191,7 +191,7 @@ def SEND_MESSAGE(op):
                         contact = client.getContact(Mids[kazu])
                         sendMessage(msg.to, ""+contact.displayName+" 被我踢了 嘿嘿")
                     else:
-                        sendMessage(msg.to, "wtf?")
+                        sendMessage(msg.to, "沒有找到這位成員><")
                 if msg.text == "cancel":
                     group = client.getGroup(msg.to)
                     if group.invitee is None:
