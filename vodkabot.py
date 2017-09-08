@@ -53,7 +53,7 @@ def NOTIFIED_ACCEPT_GROUP_INVITATION(op):
         sendMessage(op.param1, client.getContact(op.param2).displayName + "歡迎來到 " + group.name)
     except Exception as e:
         print e
-        print ("\n\nNOTIFIED_ACCEPT_GROUP_INVITATION\n\n
+        print ("\n\nNOTIFIED_ACCEPT_GROUP_INVITATION\n\n")
         return
 
 tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
