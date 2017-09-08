@@ -60,7 +60,7 @@ tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
 
 def NOTIFIED_KICKOUT_FROM_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param3).displayName + " 被踢了呢><!")
+        sendMessage("[戰神警告⚠]:"op.param1, client.getContact(op.param3).displayName + " 被踢了呢><!")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_KICKOUT_FROM_GROUP\n\n")
@@ -70,7 +70,7 @@ tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
 
 def NOTIFIED_LEAVE_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + " 再見囉")
+        sendMessage("[戰神提醒⚠]:"op.param1, client.getContact(op.param2).displayName + " 再見囉")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
@@ -141,9 +141,9 @@ def SEND_MESSAGE(op):
                     sendMessage(msg.to, msg.to)
                 if msg.text == "ginfo":
                     group = client.getGroup(msg.to)
-                    md = "[群組名稱]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[群組照片]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
-                    if group.preventJoinByTicket is False: md += "\n\n群組URL: Permitted\n"
-                    else: md += "\n\n群組URL: Refusing\n"
+                    md = "戰神抓群組資料/n[群組名稱]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[群組照片]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
+                    if group.preventJoinByTicket is False: md += "\n\n群組URL: 開啟中\n"
+                    else: md += "\n\n群組URL: 關閉中\n"
                     if group.invitee is None: md += "\n成員人數: " + str(len(group.members)) + "人\n\n招待中: 0人"
                     else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人"
                     sendMessage(msg.to,md)
@@ -175,7 +175,7 @@ def SEND_MESSAGE(op):
                     key = msg.text[5:]
                     client.kickoutFromGroup(msg.to, [key])
                     contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+"抱歉囉><")
+                    sendMessage(msg.to, ""+contact.displayName+"戰神跟你說聲抱歉囉><")
                 if "Nk:" in msg.text:
                     key = msg.text[3:]
                     group = client.getGroup(msg.to)
@@ -183,26 +183,26 @@ def SEND_MESSAGE(op):
                     Mids = [contact.mid for contact in group.members]
                     if key in Names:
                         kazu = Names.index(key)
-                        sendMessage(msg.to, "掰掰拉^^")
+                        sendMessage(msg.to, "戰神跟你說掰掰拉^^")
                         client.kickoutFromGroup(msg.to, [""+Mids[kazu]+""])
                         contact = client.getContact(Mids[kazu])
                         sendMessage(msg.to, ""+contact.displayName+" 抱歉囉><")
                     else:
-                        sendMessage(msg.to, "找不到成員><")
+                        sendMessage(msg.to, "戰神找不到這位成員><")
                 if msg.text == "cancel":
                     group = client.getGroup(msg.to)
                     if group.invitee is None:
-                        sendMessage(op.message.to, "招待中沒人><")
+                        sendMessage(op.message.to, "戰神發現...招待中沒人><")
                     else:
                         gInviMids = [contact.mid for contact in group.invitee]
                         client.cancelGroupInvitation(msg.to, gInviMids)
-                        sendMessage(msg.to, str(len(group.invitee)) + " 人 已取消")
+                        sendMessage(msg.to, str(len(group.invitee)) + " 人 已被戰神取消(´∀｀)♡")
                 if "invite:" in msg.text:
                     key = msg.text[-33:]
                     client.findAndAddContactsByMid(key)
                     client.inviteIntoGroup(msg.to, [key])
                     contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+" I invited you")
+                    sendMessage(msg.to, ""+contact.displayName+" 已被招待")
                 if msg.text == "me":
                     M = Message()
                     M.to = msg.to
@@ -240,7 +240,7 @@ def SEND_MESSAGE(op):
                                 print rom
                                 chiya += rom[1] + "\n"
 
-                        sendMessage(msg.to, "已讀的人 %s\nthat's it\n\n已讀不回的人\n%s >< ♪\n\n抓已讀點的時間:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
+                        sendMessage(msg.to, "已讀的人 %s\n\n\n已讀不回的人\n%s >< ♪\n\n抓已讀點的時間:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
                     else:
                         sendMessage(msg.to, "還沒抓已讀點喔♪")
                 else:
