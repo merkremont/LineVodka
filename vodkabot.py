@@ -148,9 +148,9 @@ def SEND_MESSAGE(op):
 		if msg.text == "Kicker":
                     sendMessage(msg.to,"Error")
 		if msg.text == "Ver":
-                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.5.4\n\n[版本詳情]\n実験版\n 3.1.0 基本指令\n 3.2.0 增加邀請系統\n 3.3.0 修改細部回覆內容\n 3.4.0 增加Nk功效\n       增加help指令 \n       增加bot指令\n 3.5.0 增加kicker指令\n       增加help指令\n       增加指令下達時間顯示")
+                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.5.4\n\n[版本詳情]\n実験版\n 3.1.0\n   基本指令\n 3.2.0\n   增加邀請系統\n 3.3.0\n   修改細部回覆內容\n 3.4.0\n   增加Nk功效\n   增加help指令 \n   增加bot指令\n 3.5.0\n   增加kicker指令\n   增加help指令\n   增加指令下達時間顯示")
 		if msg.text == "ver":
-                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.5.4\n\n[版本詳情]\n実験版\n 3.1.0 基本指令\n 3.2.0 增加邀請系統\n 3.3.0 修改細部回覆內容\n 3.4.0 增加Nk功效\n       增加help指令 \n       增加bot指令\n 3.5.0 增加kicker指令\n       增加help指令\n       增加指令下達時間顯示")
+                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.5.4\n\n[版本詳情]\n実験版\n 3.1.0\n   基本指令\n 3.2.0\n   增加邀請系統\n 3.3.0\n   修改細部回覆內容\n 3.4.0\n   增加Nk功效\n   增加help指令 \n   增加bot指令\n 3.5.0\n   增加kicker指令\n   增加help指令\n   增加指令下達時間顯示")
                 if msg.text == "ginfo":
                     group = client.getGroup(msg.to)
                     md = "戦神実験版-群組詳情\n\n" + "[群組名稱]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[群組照片]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
