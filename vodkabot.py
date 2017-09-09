@@ -168,11 +168,11 @@ def SEND_MESSAGE(op):
                     else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]"
                     sendMessage(msg.to,md)
 		if msg.text == "help":
-                    sendMessage(msg.to,"戦神実験版-help\n\n[help] 查看指令\n[ver] 查看版本\n[mid] 查看自己的mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
-				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid得友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
+                    sendMessage(msg.to,"戦神実験版-help\n\n[help] 查看指令\n[ver] 查看版本\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
+				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 if msg.text == "Help":
-                    sendMessage(msg.to,"戦神実験版-help\n\n[help] 查看指令\n[ver] 查看版本\n[mid] 查看自己的mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
-				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid得友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
+                    sendMessage(msg.to,"戦神実験版-help\n\n[help] 查看指令\n[ver] 查看版本\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
+				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
 		if "gname:" in msg.text:
                     key = msg.text[22:]
                     group = client.getGroup(msg.to)
