@@ -137,9 +137,25 @@ def SEND_MESSAGE(op):
             if msg.contentType == 0:
                 if msg.text == "mid":
                     sendMessage(msg.to, msg.from_)
+		if msg.text == "Mid":
+                    sendMessage(msg.to, msg.from_)
                 if msg.text == "gid":
                     sendMessage(msg.to, msg.to)
+		if msg.text == "Gid":
+                    sendMessage(msg.to, msg.to)
+		if msg.text == "kicker":
+                    sendMessage(msg.to,"Error")
+		if msg.text == "Kicker":
+                    sendMessage(msg.to,"Error")
                 if msg.text == "ginfo":
+                    group = client.getGroup(msg.to)
+                    md = "戦神実験版-群組詳情\n\n" + "[群組名稱]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[群組照片]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
+                    if group.preventJoinByTicket is False: md += "\n\n群組URL: 開啟中\n"
+                    else: md += "\n\n群組URL: 關閉中\n"
+                    if group.invitee is None: md += "\n成員人數: " + str(len(group.members)) + "人\n\n招待中: 0人"
+                    else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]"
+                    sendMessage(msg.to,md)
+		if msg.text == "Ginfo":
                     group = client.getGroup(msg.to)
                     md = "戦神実験版-群組詳情\n\n" + "[群組名稱]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[群組照片]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
                     if group.preventJoinByTicket is False: md += "\n\n群組URL: 開啟中\n"
@@ -149,15 +165,19 @@ def SEND_MESSAGE(op):
                     sendMessage(msg.to,md)
 		if msg.text == "help":
                     sendMessage(msg.to,"戦神実験版help\n\n[help] 查看指令\n[mid] 查看自己的mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
-				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[show:] 顯示mid得友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
-                if "gname:" in msg.text:
+				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid得友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
+                if msg.text == "help":
+                    sendMessage(msg.to,"戦神実験版help\n\n[help] 查看指令\n[mid] 查看自己的mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
+				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid得友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
+		if "gname:" in msg.text:
                     key = msg.text[22:]
                     group = client.getGroup(msg.to)
                     group.name = key
                     client.updateGroup(group)
                     sendMessage(msg.to,"Group Name"+key+"Canged to")
                 if msg.text == "url":
-                    sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to))
+                    sendMessage(msg.to,"此群網址URL")
+                    sendMessage(msg.to,"line://ti/g/" + client._client.reissueGroupTicket(msg.to) + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 if msg.text == "urlon":
                     group = client.getGroup(msg.to)
                     if group.preventJoinByTicket == False:
@@ -178,7 +198,7 @@ def SEND_MESSAGE(op):
                     key = msg.text[5:]
                     client.kickoutFromGroup(msg.to, [key])
                     contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+"掰掰囉(づ￣ ³￣)づ\n" + "[戦神実験版" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                    sendMessage(msg.to, ""+contact.displayName+"掰掰囉(づ￣ ³￣)づ\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 if "Nk:" in msg.text:
                     key = msg.text[3:]
                     group = client.getGroup(msg.to)
@@ -187,20 +207,20 @@ def SEND_MESSAGE(op):
                     if key in Names:
                         kazu = Names.index(key)
 			contact = client.getContact(Mids[kazu])
-                        sendMessage(msg.to,contact.displayName + "掰掰拉^^\n" + "[戦神実験版" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                        sendMessage(msg.to,contact.displayName + "掰掰拉^^\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                         client.kickoutFromGroup(msg.to, [""+Mids[kazu]+""])
                         contact = client.getContact(Mids[kazu])
                         sendMessage(msg.to, ""+contact.displayName+" 抱歉囉><")
                     else:
-                        sendMessage(msg.to, "戦神找不到這位成員><")
+                        sendMessage(msg.to, "戦神找不到這位成員><\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 if msg.text == "cancel":
                     group = client.getGroup(msg.to)
                     if group.invitee is None:
-                        sendMessage(op.message.to, "戦神發現...招待中沒人><")
+                        sendMessage(op.message.to, "戦神發現...招待中沒人><\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                     else:
                         gInviMids = [contact.mid for contact in group.invitee]
                         client.cancelGroupInvitation(msg.to, gInviMids)
-                        sendMessage(msg.to, str(len(group.invitee)) + " 人 已被戦神取消(´∀｀)♡\n" + "[戦神実験版" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
+                        sendMessage(msg.to, str(len(group.invitee)) + "人 已被戦神取消(´∀｀)♡\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 if "invite:" in msg.text:
                     key = msg.text[-33:]
                     client.findAndAddContactsByMid(key)
