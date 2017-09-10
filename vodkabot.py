@@ -60,7 +60,7 @@ tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
 
 def NOTIFIED_KICKOUT_FROM_GROUP(op):
     try:
-        sendMessage(op.param1,"[戦神警告]:" + client.getContact(op.param3).displayName + "  已被踢出群組!\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
+        sendMessage(op.param1,"[戦神警告]:\n" + client.getContact(op.param3).displayName + "  已被踢出群組!\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_KICKOUT_FROM_GROUP\n\n")
@@ -70,7 +70,7 @@ tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
 
 def NOTIFIED_LEAVE_GROUP(op):
     try:
-        sendMessage(op.param1,"[戦神警告]:" + client.getContact(op.param2).displayName + "  已退出群組\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
+        sendMessage(op.param1,"[戦神警告]:\n" + client.getContact(op.param2).displayName + "  已退出群組\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
