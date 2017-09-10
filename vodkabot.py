@@ -148,16 +148,16 @@ def SEND_MESSAGE(op):
 		if msg.text == "Kicker":
                     sendMessage(msg.to,"Error")
 		if msg.text == "Ver":
-                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.5.4\n\n[版本詳情]\n実験版\n 3.1.0\n   基本指令\n 3.2.0\n   增加邀請系統\n 3.3.0\n   修改細部回覆內容\n 3.4.0\n   增加Nk功效\n   增加bot指令\n 3.5.0\n   增加kicker指令\n   增加help指令\n   增加指令下達時間顯示\n   指令支援大小寫\n   增加隱藏指令")
+                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.5.5\n\n[版本詳情]\n実験版\n 3.1.0\n   基本指令\n 3.2.0\n   增加邀請系統\n 3.3.0\n   修改細部回覆內容\n 3.4.0\n   增加Nk功效\n   增加bot指令\n 3.5.0\n   增加kicker指令\n   增加help指令\n   增加指令下達時間顯示\n   指令支援大小寫\n   增加隱藏指令\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
 		if msg.text == "ver":
-                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.5.4\n\n[版本詳情]\n実験版\n 3.1.0\n   基本指令\n 3.2.0\n   增加邀請系統\n 3.3.0\n   修改細部回覆內容\n 3.4.0\n   增加Nk功效\n   增加bot指令\n 3.5.0\n   增加kicker指令\n   增加help指令\n   增加指令下達時間顯示\n   指令支援大小寫\n   增加隱藏指令")
+                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.5.5\n\n[版本詳情]\n実験版\n 3.1.0\n   基本指令\n 3.2.0\n   增加邀請系統\n 3.3.0\n   修改細部回覆內容\n 3.4.0\n   增加Nk功效\n   增加bot指令\n 3.5.0\n   增加kicker指令\n   增加help指令\n   增加指令下達時間顯示\n   指令支援大小寫\n   增加隱藏指令\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 if msg.text == "ginfo":
                     group = client.getGroup(msg.to)
                     md = "戦神実験版-群組詳情\n\n" + "[群組名稱]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[群組照片]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
                     if group.preventJoinByTicket is False: md += "\n\n群組URL: 開啟中\n"
                     else: md += "\n\n群組URL: 關閉中\n"
                     if group.invitee is None: md += "\n成員人數: " + str(len(group.members)) + "人\n\n招待中: 0人"
-                    else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]"
+                    else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + "]"
                     sendMessage(msg.to,md)
 		if msg.text == "Ginfo":
                     group = client.getGroup(msg.to)
@@ -165,13 +165,13 @@ def SEND_MESSAGE(op):
                     if group.preventJoinByTicket is False: md += "\n\n群組URL: 開啟中\n"
                     else: md += "\n\n群組URL: 關閉中\n"
                     if group.invitee is None: md += "\n成員人數: " + str(len(group.members)) + "人\n\n招待中: 0人"
-                    else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]"
+                    else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + "]"
                     sendMessage(msg.to,md)
 		if msg.text == "help":
-                    sendMessage(msg.to,"戦神実験版-help\n\n[help] 查看指令\n[ver] 查看版本\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
+                    sendMessage(msg.to,"戦神実験版Ver.3.5.5-help\n\n[help] 查看指令\n[ver] 查看版本\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
 				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 if msg.text == "Help":
-                    sendMessage(msg.to,"戦神実験版-help\n\n[help] 查看指令\n[ver] 查看版本\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
+                    sendMessage(msg.to,"戦神実験版Ver.3.5.5-help\n\n[help] 查看指令\n[ver] 查看版本\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
 				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
 		if "gname:" in msg.text:
                     key = msg.text[22:]
@@ -340,7 +340,7 @@ def SEND_MESSAGE(op):
                                 print rom
                                 chiya += rom[1] + "\n"
 
-                        sendMessage(msg.to, "戦神実験版-已讀詳情\n" + "已讀的人 %s\n\n已讀不回的人\n%s >< ♪\n\n抓已讀點的時間:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
+                        sendMessage(msg.to, "戦神実験版-已讀詳情\n" + "已讀的人: %s\n\n已讀不回的人:\n%s >< ♪\n\n抓已讀點的時間:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
                     else:
                         sendMessage(msg.to, "還沒抓已讀點喔♪")
 		if msg.text == "Read":
@@ -353,7 +353,7 @@ def SEND_MESSAGE(op):
                                 print rom
                                 chiya += rom[1] + "\n"
 
-                        sendMessage(msg.to, "戦神実験版-已讀詳情\n" + "已讀的人 %s\n\n已讀不回的人\n%s >< ♪\n\n抓已讀點的時間:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
+                        sendMessage(msg.to, "戦神実験版-已讀詳情\n" + "已讀的人: %s\n\n已讀不回的人:\n%s >< ♪\n\n抓已讀點的時間:\n[%s]"  % (wait['readMember'][msg.to],chiya,setTime[msg.to]))
                     else:
                         sendMessage(msg.to, "還沒抓已讀點喔♪")
                 else:
