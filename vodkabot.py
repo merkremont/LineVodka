@@ -147,6 +147,14 @@ def SEND_MESSAGE(op):
                     sendMessage(msg.to,"Error")
 		if msg.text == "Kicker":
                     sendMessage(msg.to,"Error")
+		if msg.text == "作者":
+                    sendMessage(msg.to,"[半垢作者]:\n 戦神:http://line.me/ti/p/4-ZKcjagH0")
+		if msg.text == "Author":
+                    sendMessage(msg.to,"[半垢作者]:\n 戦神:http://line.me/ti/p/4-ZKcjagH0")
+		if msg.text == "作成者":
+                    sendMessage(msg.to,"[半垢作者]:\n 戦神:http://line.me/ti/p/4-ZKcjagH0")
+		if msg.text == "author":
+                    sendMessage(msg.to,"[半垢作者]:\n 戦神:http://line.me/ti/p/4-ZKcjagH0")
 		if msg.text == "Ps":
                     sendMessage(msg.to,"戦神実験版-注意事項\n\n1. 禁止在副本or私訊發出指令\n2.打完指令若沒反應,請耐心等待,禁止不斷輸入指令\n3.10人以下群組會造成機器不穩定\n4.當伺服器不穩,機器也會不穩,請見諒\n\n仍有疑問歡迎詢問作者\n戦神:http://line.me/ti/p/4-ZKcjagH0")
 		if msg.text == "ps":
@@ -172,10 +180,10 @@ def SEND_MESSAGE(op):
                     else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + "]"
                     sendMessage(msg.to,md)
 		if msg.text == "help":
-                    sendMessage(msg.to,"戦神実験版Ver.3.6.1-help\n\n[help] 查看指令\n[ver] 查看版本\n[ps] 重要注意事項!\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
+                    sendMessage(msg.to,"戦神実験版Ver.3.6.1-help\n\n[help] 查看指令\n[ver] 查看版本\n[ps] 重要注意事項!\n[author] 此半垢作者連結\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
 				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 if msg.text == "Help":
-                    sendMessage(msg.to,"戦神実験版Ver.3.6.1-help\n\n[help] 查看指令\n[ver] 查看版本\n[ps] 重要注意事項!\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
+                    sendMessage(msg.to,"戦神実験版Ver.3.6.1-help\n\n[help] 查看指令\n[ver] 查看版本\n[ps] 重要注意事項!\n[author] 此半垢作者連結\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
 				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
 		if "gname:" in msg.text:
                     key = msg.text[22:]
