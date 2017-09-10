@@ -39,7 +39,7 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
 
 def NOTIFIED_ADD_CONTACT(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param1).displayName + "謝謝加入~~ Thanks for add")
+        sendMessage(op.param1, client.getContact(op.param1).displayName + "謝謝加入~~ Thanks for add\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]"")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
@@ -60,7 +60,7 @@ tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
 
 def NOTIFIED_KICKOUT_FROM_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param3).displayName + "  已被踢出群組!\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
+        sendMessage(op.param1,"[戦神警告]:" + client.getContact(op.param3).displayName + "  已被踢出群組!\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_KICKOUT_FROM_GROUP\n\n")
@@ -70,7 +70,7 @@ tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
 
 def NOTIFIED_LEAVE_GROUP(op):
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + "  已退出群組\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
+        sendMessage(op.param1,"[戦神警告]:" + client.getContact(op.param2).displayName + "  已退出群組\n" + "[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
@@ -147,10 +147,14 @@ def SEND_MESSAGE(op):
                     sendMessage(msg.to,"Error")
 		if msg.text == "Kicker":
                     sendMessage(msg.to,"Error")
+		if msg.text == "Ps":
+                    sendMessage(msg.to,"戦神実験版-注意事項\n\n1. 禁止在副本or私訊發出指令\n2.打完指令若沒反應,請耐心等待,禁止不斷輸入指令\n3.10人以下群組會造成機器不穩定\n4.當伺服器不穩,機器也會不穩,請見諒\n\n仍有疑問歡迎詢問作者\n戦神:http://line.me/ti/p/4-ZKcjagH0")
+		if msg.text == "ps":
+                    sendMessage(msg.to,"戦神実験版-注意事項\n\n1. 禁止在副本or私訊發出指令\n2.打完指令若沒反應,請耐心等待,禁止不斷輸入指令\n3.10人以下群組會造成機器不穩定\n4.當伺服器不穩,機器也會不穩,請見諒\n\n仍有疑問歡迎詢問作者\n戦神:http://line.me/ti/p/4-ZKcjagH0")
 		if msg.text == "Ver":
-                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.5.5\n\n[版本詳情]\n実験版\n 3.1.0\n   基本指令\n 3.2.0\n   增加邀請系統\n 3.3.0\n   修改細部回覆內容\n 3.4.0\n   增加Nk功效\n   增加bot指令\n 3.5.0\n   增加kicker指令\n   增加help指令\n   增加指令下達時間顯示\n   指令支援大小寫\n   增加隱藏指令\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
+                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.6.1\n\n[版本詳情]\n実験版\n 3.1.0\n   基本指令\n 3.2.0\n   增加邀請系統\n 3.3.0\n   修改細部回覆內容\n 3.4.0\n   增加Nk功效\n   增加bot指令\n 3.5.0\n   增加kicker指令\n   增加help指令\n   增加指令下達時間顯示\n   指令支援大小寫\n   增加隱藏指令\n 3.6.0\n   增加ps指令\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
 		if msg.text == "ver":
-                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.5.5\n\n[版本詳情]\n実験版\n 3.1.0\n   基本指令\n 3.2.0\n   增加邀請系統\n 3.3.0\n   修改細部回覆內容\n 3.4.0\n   增加Nk功效\n   增加bot指令\n 3.5.0\n   增加kicker指令\n   增加help指令\n   增加指令下達時間顯示\n   指令支援大小寫\n   增加隱藏指令\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
+                    sendMessage(msg.to,"戦神実験版\n\n[版本version]\n実験版ver.3.6.1\n\n[版本詳情]\n実験版\n 3.1.0\n   基本指令\n 3.2.0\n   增加邀請系統\n 3.3.0\n   修改細部回覆內容\n 3.4.0\n   增加Nk功效\n   增加bot指令\n 3.5.0\n   增加kicker指令\n   增加help指令\n   增加指令下達時間顯示\n   指令支援大小寫\n   增加隱藏指令\n 3.6.0\n   增加ps指令\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 if msg.text == "ginfo":
                     group = client.getGroup(msg.to)
                     md = "戦神実験版-群組詳情\n\n" + "[群組名稱]\n" + group.name + "\n\n[gid]\n" + group.id + "\n\n[群組照片]\nhttp://dl.profile.line-cdn.net/" + group.pictureStatus
@@ -168,10 +172,10 @@ def SEND_MESSAGE(op):
                     else: md += "\n成員人數: " + str(len(group.members)) + "人\n招待中: " + str(len(group.invitee)) + "人\n\n" + datetime.datetime.today().strftime('%H:%M:%S') + "]"
                     sendMessage(msg.to,md)
 		if msg.text == "help":
-                    sendMessage(msg.to,"戦神実験版Ver.3.5.5-help\n\n[help] 查看指令\n[ver] 查看版本\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
+                    sendMessage(msg.to,"戦神実験版Ver.3.6.1-help\n\n[help] 查看指令\n[ver] 查看版本\n[ps] 重要注意事項!\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
 				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
                 if msg.text == "Help":
-                    sendMessage(msg.to,"戦神実験版Ver.3.5.5-help\n\n[help] 查看指令\n[ver] 查看版本\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
+                    sendMessage(msg.to,"戦神実験版Ver.3.6.1-help\n\n[help] 查看指令\n[ver] 查看版本\n[ps] 重要注意事項!\n[mid] 查看自己mid\n" + "[gid] 查看群組gid\n" + "[me︎] 送出自己的友資\n[ginfo] 查看群組詳細資料\n" + "[url] 取得群組網址\n[urlon] 開啟群組網址\n[urloff] 關閉群組網址\n[invite:] 利用mid邀請\n[kick:] 利用mid踢人\n" + 
 				"[Nk:] 利用名字踢人(完整用戶名稱)\n" + "[cancel] 取消全部邀請\n[bot] 追加保護\n[kicker] 查看追加保護狀態\n[show:] 顯示mid友資\n[set] 設定已讀點\n[read] 顯示已讀用戶\n[time] 顯示現在時間\n[gift] 發送禮物\n\n\n[戦神実験版" + datetime.datetime.today().strftime('%H:%M:%S') + "]")
 		if "gname:" in msg.text:
                     key = msg.text[22:]
@@ -294,12 +298,12 @@ def SEND_MESSAGE(op):
                     M.contentType = 13
                     M.contentMetadata = {'mid': msg.from_}
                     client.sendMessage(M)
-		    
+		    sendMessage(msg.to, "[名字]\n" + contact.displayName+"")
                 if "show:" in msg.text:
                     key = msg.text[-33:]
                     sendMessage(msg.to, text=None, contentMetadata={'mid': key}, contentType=13)
                     contact = client.getContact(key)
-                    sendMessage(msg.to, ""+contact.displayName+"'s contact")
+                    sendMessage(msg.to, "這是 "+contact.displayName+" 的友資")
                 if msg.text == "time":
                     sendMessage(msg.to, "戦神実験版[" + datetime.datetime.today().strftime('%Y年%m月%d日 %H:%M:%S') + "]")
                 if msg.text == "gift":
